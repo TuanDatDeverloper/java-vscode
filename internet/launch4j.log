@@ -1,0 +1,21 @@
+
+
+Version:	3.50
+CmdLine:	E:\java vscode\internet\internet.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	E:\java vscode\internet\.
+Requires JDK:	Yes
+Requires 64-Bit: Yes
+Java min ver:	1.000.004
+Java max ver:	
+Substitute:	JAVA_HOME = C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\
+Substitute:	PATH = C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\TuanDat\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\TuanDat\AppData\Local\Programs\Python\Python313\;C:\Users\TuanDat\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\ucrt64\bin;C:\Users\TuanDat\.dotnet\tools;C:\Users\TuanDat\AppData\Local\Microsoft\WindowsApps;C:\Users\TuanDat\AppData\Roaming\npm;C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\\bin
+JRE paths:	C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\;C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\TuanDat\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\TuanDat\AppData\Local\Programs\Python\Python313\;C:\Users\TuanDat\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\ucrt64\bin;C:\Users\TuanDat\.dotnet\tools;C:\Users\TuanDat\AppData\Local\Microsoft\WindowsApps;C:\Users\TuanDat\AppData\Roaming\npm;C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\\bin
+Check launcher:	C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\bin\javaw.exe (OK)
+Check javac:	C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\bin\javac.exe (OK)
+Version string: 1.017.000_012 / 64-Bit (OK)
+Launcher:	C:\Program Files\Eclipse Adoptium\jdk-17.0.12.7-hotspot\bin\javaw.exe
+Launcher args:	-jar "E:\java vscode\internet\internet.exe"
+Args length:	43/32768 chars
+Exit code:	0
