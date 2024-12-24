@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\download\\phan_mem\\phan_mem\\mysql-connector-j-8.1.0\\mysql-connector-j-8.1.0.jar",
+        "d:\\download\\jfreechart-1.0.19\\jfreechart-1.0.19\\jfreechart-1.0.19-demo.jar",
+        "d:\\download\\jcommon-1.0.16\\jcommon-1.0.16\\jcommon-1.0.16.jar"
+    ]
+}
