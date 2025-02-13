@@ -1,5 +1,3 @@
-package Internet;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;

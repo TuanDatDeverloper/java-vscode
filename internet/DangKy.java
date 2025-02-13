@@ -1,4 +1,3 @@
-package Internet;
 
 import javax.swing.*;
 import java.awt.*;

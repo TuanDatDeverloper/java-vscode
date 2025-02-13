@@ -1,28 +1,29 @@
-package Internet;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+// thư viện Sql
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-// Thêm imports cần thiết
+// Thư viện JFreeChart để vẽ biểu đồ
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 public class QuanLyKhachHang extends JFrame {
-    private JTable table;
+    private JTable table; // Bảng hiển thị danh sách khách hàng
     private DefaultTableModel model;
     private JTextField txtTimKiem;
     private static final String ICON_PATH = "Internet/resources/";
     private JPanel mainPanel;
-
+ // 1. Khởi tạo Giao diện
     public QuanLyKhachHang() {
         setTitle("Quản Lý Tiền Internet");
         setSize(1200, 700);
@@ -40,8 +41,8 @@ public class QuanLyKhachHang extends JFrame {
         mainPanel = new JPanel(new BorderLayout(0, 0));
         mainPanel.setBackground(new Color(240, 240, 240)); // Màu xám nhạt
         
-        // Add components in correct order
-        createHeaderPanel();    // Top header
+        // Tạo các panel con
+        createHeaderPanel();    // Header
         createSearchPanel();    // Search panel
         createTablePanel();     // Table display
         createNavigationPanel();// Left navigation
@@ -50,7 +51,7 @@ public class QuanLyKhachHang extends JFrame {
         add(mainPanel);
         loadCustomers();
     }
-
+// 1.1. Tạo Header Panel
     private void createHeaderPanel() {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(51, 51, 51)); // Màu nền tối cho header
@@ -65,7 +66,7 @@ public class QuanLyKhachHang extends JFrame {
 
         mainPanel.add(headerPanel, BorderLayout.NORTH);
     }
-
+// 1.2. Tạo Search Panel
     private void createSearchPanel() {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         searchPanel.setBackground(new Color(51, 51, 51));
@@ -92,7 +93,7 @@ public class QuanLyKhachHang extends JFrame {
         searchPanel.add(btnSua);
         searchPanel.add(btnXoa);
 
-        // Add action listeners
+        // thêm sự kiện cho các nút
         btnTimKiem.addActionListener(e -> searchCustomer());
         btnThem.addActionListener(e -> showAddDialog());
         btnSua.addActionListener(e -> showEditDialog());
@@ -100,7 +101,7 @@ public class QuanLyKhachHang extends JFrame {
 
         mainPanel.add(searchPanel, BorderLayout.NORTH);
     }
-
+// 1.3. Tạo table Panel
     private void createTablePanel() {
         // Table model with columns
         model = new DefaultTableModel(
@@ -147,7 +148,7 @@ public class QuanLyKhachHang extends JFrame {
 
         mainPanel.add(scrollPane, BorderLayout.CENTER);
     }
-
+// 1.4. Tạo bảng điều hướng
     private void createNavigationPanel() {
         JPanel navPanel = new JPanel();
         navPanel.setPreferredSize(new Dimension(200, getHeight()));
@@ -192,7 +193,7 @@ public class QuanLyKhachHang extends JFrame {
 
         mainPanel.add(navPanel, BorderLayout.WEST);
     }
-
+// 1.5. Tạo phần tổng quan 
     private void showOverviewDialog() {
         JDialog dialog = new JDialog(this, "Tổng quan hệ thống", true);
         dialog.setSize(600, 400);
@@ -232,7 +233,7 @@ public class QuanLyKhachHang extends JFrame {
             rs = pstmt.executeQuery();
             double revenue = rs.next() ? rs.getDouble("total_revenue") : 0;
             mainPanel.add(createInfoPanel("Doanh thu", 
-                         String.format("%,.0f VNĐ", revenue), "money.png"), gbc);
+                         String.format("%,.0f VNĐ", revenue), "money.jpg"), gbc);
 
             // Panel 3: Gói cước phổ biến
             gbc.gridx = 0;
@@ -264,7 +265,6 @@ public class QuanLyKhachHang extends JFrame {
 
         dialog.setVisible(true);
     }
-
     private JPanel createInfoPanel(String title, String value, String iconName) {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
         panel.setBackground(Color.WHITE);
@@ -457,7 +457,8 @@ public class QuanLyKhachHang extends JFrame {
             e.printStackTrace();
         }
     }
-
+// 2. Quản lý khách hàng
+// thêm khách hàng mới
     private void showAddDialog() {
         JDialog dialog = new JDialog(this, "Thêm khách hàng", true);
         dialog.setSize(400, 300);
@@ -564,7 +565,7 @@ public class QuanLyKhachHang extends JFrame {
     
         dialog.setVisible(true);
     }
-
+// Sửa thông tin khách hàng
     private void showEditDialog() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow < 0) {
@@ -686,7 +687,7 @@ public class QuanLyKhachHang extends JFrame {
 
         dialog.setVisible(true);
     }
-
+// Xóa khách hàng
     private void deleteCustomer() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow < 0) {
@@ -721,7 +722,7 @@ public class QuanLyKhachHang extends JFrame {
             }
         }
     }
-
+// 3. Thống kê
     private void showCustomerDialog() {
         // Tạo dialog hiển thị danh sách khách hàng
         JDialog dialog = new JDialog(this, "Quản lý khách hàng", true);
@@ -763,7 +764,7 @@ public class QuanLyKhachHang extends JFrame {
 
         dialog.setVisible(true);
     }
-
+// Tải dữ liệu khách hàng
     private void loadCustomerData(DefaultTableModel model) {
         model.setRowCount(0); // Xóa dữ liệu cũ
         
@@ -788,7 +789,7 @@ public class QuanLyKhachHang extends JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
     }
-
+// Thêm phương thức showPackageDialog() vào class QuanLyKhach
     private void showPackageDialog() {
         // Tạo dialog hiển thị thông tin gói cước
         JDialog dialog = new JDialog(this, "Thông tin gói cước", true);
@@ -828,7 +829,7 @@ public class QuanLyKhachHang extends JFrame {
 
         dialog.setVisible(true);
     }
-
+// Tạo panel cho từng gói cước
     private JPanel createPackagePanel(String name, String price, String speed, String description) {
         JPanel panel = new JPanel(new BorderLayout(10, 5));
         panel.setBackground(Color.WHITE);
@@ -895,7 +896,7 @@ public class QuanLyKhachHang extends JFrame {
         btnQuayLai.addActionListener(e -> dialog.dispose());
         dialog.setVisible(true);
     }
-
+// Tạo biểu đồ tròn thống kê gói cước
     private JFreeChart createPackagesPieChart() {
         DefaultPieDataset dataset = new DefaultPieDataset();
         
@@ -922,7 +923,7 @@ public class QuanLyKhachHang extends JFrame {
 
         return chart;
     }
-
+// Tạo biểu đồ cột thống kê doanh thu theo gói
     private JFreeChart createRevenueBarChart() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
@@ -956,9 +957,14 @@ public class QuanLyKhachHang extends JFrame {
             false
         );
 
+        // Thêm code để đổi màu cột thành xanh lá cây
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, new Color(34, 139, 34)); // Màu xanh lá cây đậm
+        
         return chart;
     }
-
+// Thêm phương thức showSettingsDialog() vào class QuanLyKhachHang
     private void showSettingsDialog() {
         JDialog dialog = new JDialog(this, "Cài đặt hệ thống", true);
         dialog.setSize(500, 400);
